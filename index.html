@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blackjack Matemático — Casino Nocturno</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>🃏 Blackjack Matemático</h1>
+    <p class="subtitle">La suerte tiene matemáticas — ¿te animás?</p>
+  </header>
+
+  <main class="mesa">
+    <section class="area casa-area">
+      <h2>Casa</h2>
+      <div id="cartas-casa" class="fila-cartas"></div>
+      <div class="info-small">Total: <span id="total-casa">?</span></div>
+    </section>
+
+    <section class="area centro-area">
+      <div class="panel-controles">
+        <div class="panel-prob">
+          <h3>📊 Probabilidades</h3>
+          <div class="prob-row"><span>Acercarte (&lt;21):</span><strong id="p-acercar">0.0%</strong></div>
+          <div class="prob-row"><span>Llegar (=21):</span><strong id="p-exacto">0.0%</strong></div>
+          <div class="prob-row"><span>Pasarte (&gt;21):</span><strong id="p-pasar">0.0%</strong></div>
+        </div>
+
+        <div class="panel-acciones">
+          <button id="btn-pedir" class="btn">Pedir carta</button>
+          <button id="btn-plantar" class="btn alt">Plantarse</button>
+        </div>
+
+        <div id="mensaje-estado" class="mensaje-estado"></div>
+        <button id="btn-reiniciar" class="btn reiniciar" style="display:none">🔁 Jugar otra vez</button>
+      </div>
+    </section>
+
+    <section class="area jugador-area">
+      <h2>Tú</h2>
+      <div id="cartas-jugador" class="fila-cartas"></div>
+      <div class="info-small">Total: <span id="total-jugador">0</span></div>
+    </section>
+  </main>
+
+  <!-- Modal resultado -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div id="modal-icon" class="modal-icon">🏆</div>
+      <h2 id="modal-text">¡Ganaste!</h2>
+      <p id="modal-sub">Buen cálculo — seguí así</p>
+      <button id="modal-replay" class="btn">Jugar otra vez</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  
+<div class="imagen-esquina">
+  <img id="img-personal" src="https://yt3.googleusercontent.com/nJf4afyR06h-gh0iWLK7sDhLI8c9Pbt6uTDfCT7FXfW9h7M4Ji6fRUhZmtxXqI-IV81TnLG1VJQ=s900-c-k-c0x00ffffff-no-rj" alt="Imagen personalizada">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+:root{
+  --verde-oscuro:#041f12;
+  --verde-tapete:#0b3b2b;
+  --dorado:#c9a446;
+  --blanco:#eef4ee;
+  --negro-trans: rgba(0,0,0,0.5);
+  --card-w:76px;
+  --card-h:110px;
+  --radius:12px;
+}
+
+/* Reset básico */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background: radial-gradient(circle at 20% 10%, #071f17 0%, #02120e 45%, #00070a 100%);
+  color:var(--blanco);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* Top */
+.topbar{
+  text-align:center;
+  margin:18px 0 6px 0;
+}
+.topbar h1{
+  color:var(--dorado);
+  text-shadow: 0 8px 30px rgba(201,164,70,0.12);
+  font-size:1.6rem;
+  letter-spacing:1px;
+}
+.subtitle{color: #bfcfbe; margin-top:6px; font-size:0.9rem}
+
+/* Mesa */
+.mesa{
+  width:95%;
+  max-width:1100px;
+  display:grid;
+  grid-template-columns: 1fr 360px 1fr;
+  gap:18px;
+  padding:20px;
+  border-radius:16px;
+  background: linear-gradient(180deg, rgba(5,18,12,0.55), rgba(0,0,0,0.38));
+  border:2px solid rgba(201,164,70,0.09);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* Areas */
+.area{ padding:10px; display:flex; flex-direction:column; align-items:center;}
+.area h2{ color:#cfe8d9; margin-bottom:10px; font-size:1.05rem}
+.fila-cartas{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  min-height:var(--card-h);
+  justify-content:center;
+}
+
+/* Carta minimal */
+.carta {
+  width:var(--card-w);
+  height:var(--card-h);
+  border-radius:10px;
+  background: linear-gradient(180deg,#fff 0%, #f3f3f3 100%);
+  color:#0a0a0a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.3rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45), 0 0 24px rgba(0,0,0,0.2) inset;
+  transform-origin: bottom center;
+  transition: transform 300ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms;
+  position:relative;
+  border:2px solid rgba(0,0,0,0.06);
+}
+
+/* efecto hover (solo cuando habilitado) */
+.carta:hover{ transform: translateY(-6px) scale(1.04); box-shadow: 0 18px 30px rgba(0,0,0,0.6); }
+
+/* carta oculta */
+.carta.oculta{
+  background: linear-gradient(180deg,#0b3b2b 0%, #062e21 100%);
+  color:transparent;
+  border:2px solid rgba(201,164,70,0.18);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 20px rgba(201,164,70,0.06) inset;
+}
+.carta.oculta::after{
+  content:"";
+  position:absolute;
+  inset:12% 10%;
+  background: repeating-linear-gradient(45deg, rgba(201,164,70,0.06) 0 2px, transparent 2px 8px);
+  border-radius:6px;
+}
+
+/* panel central */
+.panel-controles{
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.12));
+  border-radius:12px;
+  padding:14px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  border:1px solid rgba(201,164,70,0.06);
+}
+
+/* probabilidades */
+.panel-prob{ width:100%; padding:8px; background: rgba(2,6,4,0.25); border-radius:8px; border:1px solid rgba(255,255,255,0.02)}
+.panel-prob h3{ color:var(--dorado); margin-bottom:8px; font-size:0.95rem}
+.prob-row{ display:flex; justify-content:space-between; padding:6px 4px; font-size:0.95rem; color:#dff2e6 }
+
+/* botones */
+.btn{
+  background: linear-gradient(180deg,var(--dorado), #b58f32);
+  color:#06150f;
+  border:none;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  box-shadow: 0 8px 18px rgba(165,130,60,0.12);
+  transition: transform 140ms ease, box-shadow 140ms;
+}
+.btn:hover{ transform: translateY(-4px); box-shadow: 0 18px 30px rgba(0,0,0,0.5) }
+.btn.alt{ background: linear-gradient(180deg,#dfe8df,#cbdcc2); color:#082016 }
+.btn.reiniciar{ background: transparent; color:var(--dorado); border:2px dashed rgba(201,164,70,0.18) }
+
+/* estado breve */
+.mensaje-estado{ min-height:28px; color:#bfe7c9; font-weight:600; text-align:center; margin-top:6px; font-size:0.95rem}
+
+/* totals */
+.info-small{ margin-top:8px; color:#b9d9c6; font-size:0.95rem}
+
+/* modal resultado */
+.modal{
+  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(circle, rgba(0,0,0,0.45), rgba(0,0,0,0.72));
+  z-index:80; transition: opacity 200ms ease;
+}
+.hidden{ display:none }
+
+.modal-card{
+  width:320px; max-width:92%;
+  background: linear-gradient(180deg,#07170f,#02200f);
+  border-radius:14px; padding:18px;
+  text-align:center; border:1px solid rgba(201,164,70,0.08);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.65);
+  transform: translateY(-20px) scale(.98);
+  animation: popIn 360ms cubic-bezier(.2,.9,.25,1) forwards;
+}
+@keyframes popIn{
+  to{ transform: translateY(0) scale(1) }
+}
+.modal-icon{ font-size:48px; margin-bottom:6px; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6)) }
+.modal-card h2{ color:var(--dorado); font-size:1.4rem; margin-bottom:6px }
+.modal-card p{ color:#cfe8d9; margin-bottom:10px }
+
+/* animaciones de victoria/derrota */
+.modal-card.win{ box-shadow: 0 24px 80px rgba(34,255,150,0.06), 0 0 40px rgba(201,164,70,0.06) inset; border:2px solid rgba(34,255,150,0.06) }
+.modal-card.lose{ box-shadow: 0 24px 80px rgba(255,50,50,0.06); border:2px solid rgba(255,50,50,0.06) }
+.modal-icon.win{ transform: translateY(-6px); animation: glowGreen 900ms infinite alternate; }
+.modal-icon.lose{ transform: translateY(-6px); animation: shake 700ms; }
+@keyframes glowGreen{ from{filter: drop-shadow(0 6px 8px rgba(34,255,150,0.08))} to{filter: drop-shadow(0 20px 28px rgba(34,255,150,0.18))} }
+@keyframes shake{
+  10%,90%{transform:translateX(-1px)} 20%,80%{transform:translateX(2px)} 30%,50%,70%{transform:translateX(-2px)} 40%,60%{transform:translateX(1px)}
+}
+
+/* responsive */
+@media (max-width:920px){
+  .mesa{ grid-template-columns: 1fr; }
+  .centro-area{ order:3 }
+  .casa-area{ order:1 }
+  .jugador-area{ order:2 }
+  .panel-controles{ width:100% }
+}
+.imagen-esquina {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  z-index: 50;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.imagen-esquina:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.imagen-esquina img {
+  width: 300px; 
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(201,164,70,0.2);
+}
